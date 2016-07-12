@@ -128,9 +128,9 @@
     <dependency>
     	<groupId>com.estafeta.general</groupId>
     	<artifactId>businessEntities</artifactId>
-    	<version>1.0.3</version>
+    	<version>1.0.5</version>
     	<scope>system</scope>
-    	<systemPath>${project.basedir}/repo/lib/businessEntities-1.0.3.jar</systemPath>
+    	<systemPath>${project.basedir}/repo/lib/businessEntities-1.0.5.jar</systemPath>
     </dependency>
     <dependency>
     	<groupId>org.apache.aries.proxy</groupId>

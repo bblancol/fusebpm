@@ -1,6 +1,9 @@
 package com.estafeta.camelTest1;
 
 import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import org.kie.api.KieBase;
 import org.kie.api.runtime.KieSession;
@@ -12,6 +15,8 @@ import org.kie.services.client.api.command.RemoteRuntimeEngine;
 import org.kie.services.client.api.command.exception.RemoteCommunicationException;
 
 import com.estafeta.general.businessentities.BusinessData;
+import com.estafeta.general.businessentities.BusinessData1;
+import com.estafeta.general.businessentities.BusinessData2; 
 import com.estafeta.general.businessentities.ExceptionData;
 import com.estafeta.general.businessentities.MensajeME;
 import com.estafeta.general.businessentities.ProcessData;
@@ -67,7 +72,7 @@ public class RestBPM {
 	        //throw new RemoteCommunicationException("Unable to create " + InitialContext.class.getSimpleName(), e);
 	    }
 	}
-	*/
+	*/ 
 	public void createRestSession()
 	{
 		try {
@@ -85,13 +90,19 @@ public class RestBPM {
 						ProcessData.class, 
 						ExceptionData.class,
 						BusinessData.class,
+						BusinessData1.class,
+						BusinessData2.class, 
+						Date.class,
+						Long.class,
+						Boolean.class,
+					//	List.class,
 						DummyClass.class}).build();
 			
 	        //org.kie.api.runtime.manager.RuntimeEngine runtimeEngine = factory.newRuntimeEngine();
 	        KieSession ksession = runtimeEngine.getKieSession();
 	       //System.out.println("ID Sesion: " + ksession.getId());
 	        
-	        java.util.Map<String, Object> params = new java.util.HashMap<String, Object>();
+	        java.util.Map<String, MensajeME> params = new java.util.HashMap<String, MensajeME>();
 	        MensajeME objMensaje = new MensajeME();
 	        objMensaje.setProcessData(new ProcessData());
 		    objMensaje.getProcessData().setCorrelationKey("CK0005");
@@ -104,7 +115,7 @@ public class RestBPM {
 		    
 	        params.put("mensaje", objMensaje);
 	        
-	        ksession.signalEvent("Message-iniciarGenerico", params); 
+	        ksession.signalEvent("Message-iniciarGenerico", objMensaje); 
 
 		} catch (Exception e) {
 			e.printStackTrace();
